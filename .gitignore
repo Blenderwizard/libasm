@@ -1,0 +1,10 @@
+objs
+*test*
+*temp*
+.vs_code
+.vscode
+*.dSYM
+*.o
+.DS_Store
+libasm.a
+a.out
