@@ -2,7 +2,7 @@
 
 Thank the metaphysical being that can be argued if they exist or not used as an explanation of the unkown to us that Ghidra exists
 
-## Resources
+## Writen Resources
 > [Returning a value in x86 assembly](https://stackoverflow.com/questions/55773868/returning-a-value-in-x86-assembly-language)
 
 > [What is a stack frame](https://stackoverflow.com/questions/10057443/explain-the-concept-of-a-stack-frame-in-a-nutshell)
