@@ -6,7 +6,7 @@
 #    By: jrathelo <student.42nice.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 15:25:19 by jrathelo          #+#    #+#              #
-#    Updated: 2022/09/25 10:57:33 by jrathelo         ###   ########.fr        #
+#    Updated: 2022/09/25 13:33:32 by jrathelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,12 @@ OUTS = objs
 SRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 SRC_PLUS_PATH = $(addprefix $(SRC_DIR)/, $(SRC))
 
+TEST_SRC = tests/test.c
+TEST_SRC_PLUS_PATH = $(addprefix $(SRC_DIR)/, $(TEST_SRC))
+
 # Output Files
 OUT = $(subst $(SRC_DIR)/, $(OUTS)/, $(patsubst %.s, %.o, $(SRC_PLUS_PATH)))
+TEST_OUT = $(subst $(SRC_DIR)/, $(OUTS)/, $(patsubst %.c, %.o, $(TEST_SRC_PLUS_PATH)))
 
 NAME = libasm.a
 
@@ -59,25 +63,41 @@ CC = nasm
 CFLAGS = -f macho64
 # macho64	Mach-O x86-64 (Mach, including MacOS X and variants)
 
-all : $(NAME)
+TESTS = tester
+
+all :
+	@echo "$(_YELLOW)Begin Compiling $(NAME)$(_COLOR_RESET)"
+	@make $(NAME)
+	@echo "$(_YELLOW)Begin Compiling $(TESTS)$(_COLOR_RESET)"
+	@make $(TESTS)
 
 $(NAME): $(OUT)
 	@echo "$(_PURPLE)Linking $(NAME)$(_COLOR_RESET)"
 	@ar rcs $(NAME) $(OUT)
 	@echo "$(_GREEN)DONE$(_COLOR_RESET)"
 
+$(TESTS): $(NAME) $(TEST_OUT)
+	@echo "$(_PURPLE)Linking $(TESTS)$(_COLOR_RESET)"
+	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm 
+	@echo "$(_GREEN)DONE$(_COLOR_RESET)"
 
 $(OUT): $(OUTS)/%.o : $(SRC_DIR)/%.s
 	@echo "$(_CYAN)Compiling $(basename $(notdir $*.o)) $(_COLOR_RESET)"
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -o $@ $< 
 
+$(TEST_OUT): $(OUTS)/%.o : $(SRC_DIR)/%.c
+	@echo "$(_CYAN)Compiling $(basename $(notdir $*.o)) $(_COLOR_RESET)"
+	@mkdir -p $(@D)
+	@gcc -Wall -Werror -Wextra -c $< -o $@
+
 re: fclean
-	@make $(NAME)
+	@make all
 
 fclean: clean
 	@echo "$(_RED)Cleaning output files$(_COLOR_RESET)"
 	@rm -rf $(NAME)
+	@rm -rf $(TESTS)
 
 clean:
 	@echo "$(_RED)Cleaning object files$(_COLOR_RESET)"

@@ -1,5 +1,4 @@
 objs
-*test*
 *temp*
 .vs_code
 .vscode
@@ -8,3 +7,4 @@ objs
 .DS_Store
 libasm.a
 a.out
+tester
