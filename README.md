@@ -1,6 +1,6 @@
-# A 42 asm project 
+# A 42 asmembly project 
 
-Thank god ghidra exists
+Thank the metaphysical being that can be argued if they exist or not used as an explanation of the unkown to us that Ghidra exists
 
 ## Resources
 > [Returning a value in x86 assembly](https://stackoverflow.com/questions/55773868/returning-a-value-in-x86-assembly-language)
