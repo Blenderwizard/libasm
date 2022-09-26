@@ -1,4 +1,4 @@
-# A 42 assmembly project 
+# A 42 assembly project 
 
 Thank the metaphysical being that can be argued if they exist or not used as an explanation of the unkown to us that Ghidra exists
 
