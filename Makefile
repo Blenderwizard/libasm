@@ -6,7 +6,7 @@
 #    By: jrathelo <student.42nice.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 15:25:19 by jrathelo          #+#    #+#              #
-#    Updated: 2022/09/25 13:33:32 by jrathelo         ###   ########.fr        #
+#    Updated: 2022/09/27 13:03:07 by jrathelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ $(NAME): $(OUT)
 
 $(TESTS): $(NAME) $(TEST_OUT)
 	@echo "$(_PURPLE)Linking $(TESTS)$(_COLOR_RESET)"
-	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm 
+	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm -Wall -Wextra -Werror -g
 	@echo "$(_GREEN)DONE$(_COLOR_RESET)"
 
 $(OUT): $(OUTS)/%.o : $(SRC_DIR)/%.s
@@ -89,7 +89,7 @@ $(OUT): $(OUTS)/%.o : $(SRC_DIR)/%.s
 $(TEST_OUT): $(OUTS)/%.o : $(SRC_DIR)/%.c
 	@echo "$(_CYAN)Compiling $(basename $(notdir $*.o)) $(_COLOR_RESET)"
 	@mkdir -p $(@D)
-	@gcc -Wall -Werror -Wextra -c $< -o $@
+	@gcc -Wall -Werror -Wextra -g -c $< -o $@
 
 re: fclean
 	@make all

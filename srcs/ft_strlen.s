@@ -13,5 +13,5 @@ start_loop:
 	JMP		start_loop ; Continue Loop
 
 exit_prog:
-	LEAVE ; Tears down the stack frame
-	RET ; Returns RAX
+	LEAVE ; Tear down the stack frame
+	RET ; Return
