@@ -6,7 +6,7 @@
 /*   By: jrathelo <student.42nice.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:15:56 by jrathelo          #+#    #+#             */
-/*   Updated: 2022/09/27 17:56:01 by jrathelo         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:32:43 by jrathelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int ft_strcmp(const char * s1, const char *s2);
 char *ft_strcpy(char * s1, const char *s2);
 int ft_write(int fildes, const void *buf, size_t nbytes);
 int ft_read(int fildes, void *buf, size_t nbytes);
+char *ft_strdup(const char *s1);
 
 void ft_strlen_tests() {
 	printf("\"%s\" has length of %lu\n", "Hello ASM", ft_strlen("Hello ASM"));
@@ -83,11 +84,18 @@ void ft_read_tests() {
 	}
 }
 
+void ft_strdup_tests() {
+	char * test = ft_strdup("Hello");
+	printf("\"%s\"\n", test);
+	free(test);
+}
+
 int main() {
 	// ft_strlen_tests();
 	// ft_strcmp_tests();
 	// ft_strcmp_tests();
 	// ft_write_tests();
-	ft_read_tests();
+	// ft_read_tests();
+	ft_strdup_tests();
 	return (0);
 }
