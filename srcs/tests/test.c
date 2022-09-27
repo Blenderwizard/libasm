@@ -6,7 +6,7 @@
 /*   By: jrathelo <student.42nice.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:15:56 by jrathelo          #+#    #+#             */
-/*   Updated: 2022/09/27 18:32:43 by jrathelo         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:59:22 by jrathelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ void ft_strdup_tests() {
 }
 
 int main() {
-	// ft_strlen_tests();
-	// ft_strcmp_tests();
-	// ft_strcmp_tests();
-	// ft_write_tests();
-	// ft_read_tests();
+	ft_strlen_tests();
+	ft_strcmp_tests();
+	ft_strcmp_tests();
+	ft_write_tests();
+	ft_read_tests();
 	ft_strdup_tests();
 	return (0);
 }
