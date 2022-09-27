@@ -2,7 +2,7 @@ section .text
 global _ft_strlen
 
 _ft_strlen:
-	PUSH	RBP ; establish a stack frame
+	PUSH	RBP ; Establish a stack frame
     MOV		RBP, RSP
 
 	XOR		RAX, RAX ; initialize long = 0

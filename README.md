@@ -14,3 +14,5 @@ Thank the metaphysical being that can be argued if they exist or not used as an 
 > [Which is Better XOR or MOV 0 to set register to 0](https://stackoverflow.com/questions/1135679/does-using-xor-reg-reg-give-advantage-over-mov-reg-0)
 
 > [Intel® 64 and IA-32 Architectures Optimization Reference Manual](http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-optimization-manual.pdf)
+
+> [MacOS X 64bit Assembly System Calls](http://dustin.schultz.io/mac-os-x-64-bit-assembly-system-calls.html)

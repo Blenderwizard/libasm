@@ -2,7 +2,7 @@ section .text
 global _ft_strcmp
 
 _ft_strcmp:
-	PUSH	RBP ; establish a stack frame
+	PUSH	RBP ; Establish a stack frame
     MOV		RBP, RSP
 	XOR		RAX, RAX ; i = 0
 

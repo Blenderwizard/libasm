@@ -2,7 +2,7 @@ section .text
 global _ft_strcpy
 
 _ft_strcpy:
-	PUSH	RBP ; establish stack frame
+	PUSH	RBP ; Establish stack frame
 	MOV		RBP, RSP
 	XOR		RAX, RAX ; i = 0
 
