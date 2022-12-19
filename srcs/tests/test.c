@@ -97,11 +97,11 @@ void ft_strdup_tests() {
 }
 
 int main() {
-	// ft_strlen_tests();
-	// ft_strcmp_tests();
-	// ft_strcmp_tests();
-	// ft_write_tests();
-	// ft_read_tests();
+	ft_strlen_tests();
+	ft_strcmp_tests();
+	ft_strcmp_tests();
+	ft_write_tests();
+	ft_read_tests();
 	ft_strdup_tests();
 	return (0);
 }
