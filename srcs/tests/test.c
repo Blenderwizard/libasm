@@ -92,16 +92,16 @@ void ft_strdup_tests() {
 	}
 	{
 		char * test = ft_strdup(NULL);
-		printf("%p", test);
+		printf("%s\n", test);
 	}
 }
 
 int main() {
-	ft_strlen_tests();
-	ft_strcmp_tests();
-	ft_strcmp_tests();
-	ft_write_tests();
-	ft_read_tests();
+	// ft_strlen_tests();
+	// ft_strcmp_tests();
+	// ft_strcmp_tests();
+	// ft_write_tests();
+	// ft_read_tests();
 	ft_strdup_tests();
 	return (0);
 }
