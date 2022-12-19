@@ -6,6 +6,8 @@ extern 	_malloc
 _ft_strdup:
 	PUSH	RBP ; Establish a stack frame
 	MOV 	RBP, RSP
+	CMP		RDI, 0 ; If Parametered string is null, return
+	JE		exit_prog_null_string
 	CALL 	_ft_strlen ; Get size to allocate
 	PUSH	RDI ; Save RDI for later
 	PUSH	0 ; Keep stack alligned
@@ -24,6 +26,9 @@ loop:
 	CMP		DL, 0 ; oldstring[i] == '\x00'
 	JNE		loop ; if false continue
 	JE		exit_prog ; if true exit
+
+exit_prog_null_string:
+	XOR		RAX,RAX
 
 exit_prog:
 	LEAVE

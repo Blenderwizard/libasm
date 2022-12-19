@@ -85,9 +85,15 @@ void ft_read_tests() {
 }
 
 void ft_strdup_tests() {
-	char * test = ft_strdup("Hello");
-	printf("\"%s\"\n", test);
-	free(test);
+	{
+		char * test = ft_strdup("Hello");
+		printf("\"%s\"\n", test);
+		free(test);
+	}
+	{
+		char * test = ft_strdup(NULL);
+		printf("%p", test);
+	}
 }
 
 int main() {
