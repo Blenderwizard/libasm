@@ -47,7 +47,7 @@ SRC_DIR = srcs
 OUTS = objs
 
 # Source Files
-SRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s ft_atoi_base_bonus.s
+SRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s ft_atoi_base_bonus.s ft_list_size_bonus.s ft_list_push_front_bonus.s
 SRC_PLUS_PATH = $(addprefix $(SRC_DIR)/, $(SRC))
 
 TEST_SRC = tests/test.c

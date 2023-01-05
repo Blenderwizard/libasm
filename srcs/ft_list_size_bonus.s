@@ -1,13 +1,3 @@
-section .data
-
-size_i:
-    s_list STRUCT   ; struct s_list {
-        data: RES 1 ;    void *data;
-        next: RES 1 ;    struct s_list *next;
-    s_list ENDS     ; }
-len: 
-    EQU $ - size_i ; sizeof(s_list)
-
 section .text
 global _ft_list_size
 
