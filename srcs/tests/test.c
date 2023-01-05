@@ -22,6 +22,7 @@ char *ft_strcpy(char * s1, const char *s2);
 int ft_write(int fildes, const void *buf, size_t nbytes);
 int ft_read(int fildes, void *buf, size_t nbytes);
 char *ft_strdup(const char *s1);
+int ft_atoi_base(const char *s, const char *base);
 
 void ft_strlen_tests() {
 	printf("\"%s\" has length of %lu\n", "Hello ASM", ft_strlen("Hello ASM"));
@@ -96,12 +97,42 @@ void ft_strdup_tests() {
 	}
 }
 
+void ft_atoi_base_tests() {
+	{
+		printf("\"FF\" from base \"0123456789ABCDEF\" to base10 is %d\n", ft_atoi_base("FF","0123456789ABCDEF"));
+		printf("\"100\" from base \"01\" to base10 is %d\n", ft_atoi_base("100","01"));
+		printf("\"-100\" from base \"01\" to base10 is %d\n", ft_atoi_base("-100","01"));
+		printf("\"--100\" from base \"01\" to base10 is %d\n", ft_atoi_base("--100","01"));
+		printf("\"+-100\" from base \"01\" to base10 is %d\n", ft_atoi_base("+-100","01"));
+		printf("\"+--100\" from base \"01\" to base10 is %d\n", ft_atoi_base("+--100","01"));
+		printf("\"++-100\" from base \"01\" to base10 is %d\n", ft_atoi_base("++-100","01"));
+		printf("\" 100\" from base \"01\" to base10 is %d\n", ft_atoi_base(" 100","01"));
+		printf("\" \\t\\n100\" from base \"01\" to base10 is %d\n", ft_atoi_base(" \t\n100","01"));
+		printf("\" \\t\\n\\r\\v\\f100\" from base \"01\" to base10 is %d\n", ft_atoi_base(" \t\n\r\v\f100","01"));
+		printf("\" \\t\\n\\r\\v\\f100\" from base \"01\" to base10 is %d\n", ft_atoi_base(" \t\n\r\v\f+100","01"));
+		printf("\" \\t\\n\\r\\v\\f100\" from base \"01\" to base10 is %d\n", ft_atoi_base(" \t\n\r\v\f+-100","01"));
+		printf("\"10a0\" from base \"01\" to base10 is %d\n", ft_atoi_base("10a0","01"));
+		printf("NULL from base \"01\" to base10 is %d\n", ft_atoi_base(NULL,"01"));
+		printf("base \" 01\" is invalid %d\n", ft_atoi_base("01"," 01"));
+		printf("base \"0 1\" is invalid %d\n", ft_atoi_base("01","0 1"));
+		printf("base \"1 \" is invalid %d\n", ft_atoi_base("01","1 "));
+		printf("base \"1\" is invalid %d\n", ft_atoi_base("01","1"));
+		printf("base \"+1\" is invalid %d\n", ft_atoi_base("01","+1"));
+		printf("base \"0+1\" is invalid %d\n", ft_atoi_base("01","0+1"));
+		printf("base \"1-\" is invalid %d\n", ft_atoi_base("01","1-"));
+		printf("base \"11\" is invalid %d\n", ft_atoi_base("01","11"));
+		printf("base \"011\" is invalid %d\n", ft_atoi_base("01","011"));
+		printf("base NULL is invalid %d\n", ft_atoi_base(NULL,NULL));
+	}
+}
+
 int main() {
-	ft_strlen_tests();
-	ft_strcmp_tests();
-	ft_strcmp_tests();
-	ft_write_tests();
-	ft_read_tests();
-	ft_strdup_tests();
+	// ft_strlen_tests();
+	// ft_strcmp_tests();
+	// ft_strcmp_tests();
+	// ft_write_tests();
+	// ft_read_tests();
+	// ft_strdup_tests();
+	ft_atoi_base_tests();
 	return (0);
 }
