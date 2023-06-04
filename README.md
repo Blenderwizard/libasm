@@ -17,6 +17,8 @@ Thank the metaphysical being that can be argued if they exist or not used as an 
 
 > [MacOS X 64bit Assembly System Calls](http://dustin.schultz.io/mac-os-x-64-bit-assembly-system-calls.html)
 
+> [Linux Syscall Reference](https://syscalls64.paolostivanin.com/)
+
 ```asm
 ; REFERENCE FOR SYS CALLS
 ; %eax 	Name		%ebx			%ecx			%edx	%esx	%edi
