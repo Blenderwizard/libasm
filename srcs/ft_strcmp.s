@@ -1,7 +1,17 @@
 section .text
+%ifdef MACOS
 global _ft_strcmp
+%endif
+%ifdef LINUX
+global ft_strcmp
+%endif
 
+%ifdef MACOS
 _ft_strcmp:
+%endif
+%ifdef LINUX
+ft_strcmp:
+%endif
 	PUSH	RBP ; Establish a stack frame
     MOV		RBP, RSP
 	XOR		RAX, RAX ; i = 0

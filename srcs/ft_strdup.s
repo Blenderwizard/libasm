@@ -1,18 +1,47 @@
+%ifdef MACOS
+extern 	_malloc
+%endif
+%ifdef LINUX
+extern malloc
+%endif
+
 section .text
+
+%ifdef MACOS
 global	_ft_strdup
 extern	_ft_strlen
-extern 	_malloc
+%endif
+%ifdef LINUX
+global	ft_strdup
+extern	ft_strlen
+%endif
 
+
+%ifdef MACOS
 _ft_strdup:
+%endif
+%ifdef LINUX
+ft_strdup:
+%endif
 	PUSH	RBP ; Establish a stack frame
 	MOV 	RBP, RSP
 	CMP		RDI, 0 ; If Parametered string is null, return
 	JE		exit_prog_null_string
+%ifdef MACOS
 	CALL 	_ft_strlen ; Get size to allocate
+%endif
+%ifdef LINUX
+	CALL	ft_strlen
+%endif
 	PUSH	RDI ; Save RDI for later
 	PUSH	0 ; Keep stack alligned
 	MOV 	RAX, RDI ; Set first parameter to return of ft_strlen
+%ifdef MACOS
 	CALL	_malloc ; Allocate
+%endif
+%ifdef LINUX
+	CALL	malloc ; Allocate
+%endif
 	POP		RDI ; Get rid of dummy
 	POP		RDI ; Retrieve parameter
 	CMP		RAX, 0 ; If malloc returned null, error out

@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jrathelo <student.42nice.fr>               +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/25 15:25:19 by jrathelo          #+#    #+#              #
-#    Updated: 2022/09/27 18:51:20 by jrathelo         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # Colors
 _BLACK			= \033[0;30m
 _RED 			= \033[0;31m
@@ -47,7 +35,7 @@ SRC_DIR = srcs
 OUTS = objs
 
 # Source Files
-SRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s ft_atoi_base_bonus.s ft_list_size_bonus.s ft_list_push_front_bonus.s
+SRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 SRC_PLUS_PATH = $(addprefix $(SRC_DIR)/, $(SRC))
 
 TEST_SRC = tests/test.c
@@ -60,8 +48,14 @@ TEST_OUT = $(subst $(SRC_DIR)/, $(OUTS)/, $(patsubst %.c, %.o, $(TEST_SRC_PLUS_P
 NAME = libasm.a
 
 CC = nasm
-CFLAGS = -f macho64
-# macho64	Mach-O x86-64 (Mach, including MacOS X and variants)
+
+UNAME_S = $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+ ASMFLAGS = -f elf64 -D LINUX
+endif
+ifeq ($(UNAME_S),Darwin)
+ ASMFLAGS = -f macho64 -D MACOS
+endif
 
 TESTS = tester
 
@@ -78,18 +72,18 @@ $(NAME): $(OUT)
 
 $(TESTS): $(NAME) $(TEST_OUT)
 	@echo "$(_PURPLE)Linking $(TESTS)$(_COLOR_RESET)"
-	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm -Wall -Wextra -Werror -g
+	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm -Wall -Wextra -Werror -g -no-pie -fno-pie -z noexecstack
 	@echo "$(_GREEN)DONE$(_COLOR_RESET)"
 
 $(OUT): $(OUTS)/%.o : $(SRC_DIR)/%.s
 	@echo "$(_CYAN)Compiling $(basename $(notdir $*.o)) $(_COLOR_RESET)"
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -o $@ $< 
+	@$(CC) $(ASMFLAGS) -o $@ $<
 
 $(TEST_OUT): $(OUTS)/%.o : $(SRC_DIR)/%.c
 	@echo "$(_CYAN)Compiling $(basename $(notdir $*.o)) $(_COLOR_RESET)"
 	@mkdir -p $(@D)
-	@gcc -Wall -Werror -Wextra -g -c $< -o $@
+	@gcc -Wall -Werror -Wextra -g -no-pie -fno-pie -c $< -o $@
 
 re: fclean
 	@make all
@@ -101,6 +95,6 @@ fclean: clean
 
 clean:
 	@echo "$(_RED)Cleaning object files$(_COLOR_RESET)"
-	@rm -rf $(OUTS)
-	
+	@rm -rf objs
+
 .PHONY: clean fclean re all

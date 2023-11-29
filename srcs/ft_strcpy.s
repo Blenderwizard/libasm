@@ -1,7 +1,18 @@
 section .text
-global _ft_strcpy
 
+%ifdef MACOS
+global _ft_strcpy
+%endif
+%ifdef LINUX
+global ft_strcpy
+%endif
+
+%ifdef MACOS
 _ft_strcpy:
+%endif
+%ifdef LINUX
+ft_strcpy:
+%endif
 	PUSH	RBP ; Establish stack frame
 	MOV		RBP, RSP
 	XOR		RAX, RAX ; i = 0

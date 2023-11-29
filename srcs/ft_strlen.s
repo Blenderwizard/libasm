@@ -1,7 +1,18 @@
 section .text
-global _ft_strlen
 
+%ifdef MACOS
+global _ft_strlen
+%endif
+%ifdef LINUX
+global ft_strlen
+%endif
+
+%ifdef MACOS
 _ft_strlen:
+%endif
+%ifdef LINUX
+ft_strlen:
+%endif
 	PUSH	RBP ; Establish a stack frame
     MOV		RBP, RSP
 
