@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 #include <sys/syscall.h>
 
 
@@ -92,12 +93,18 @@ void ft_read_tests() {
 		ft_write(1, test, ft_strlen(test));
 		free(test);
 	}
+    {
+        ft_read(-1, NULL, 0);
+        printf("errno: %d, expected:", errno);
+        read(-1, NULL, 0);
+        printf(" %d\n", errno);
+    }
 }
 
 void ft_strdup_tests() {
     printf("----- Starting ft_strdup tests -----\n");
 	{
-		char * test = ft_strdup("Hello");
+        char * test = ft_strdup("Hello");
 		printf("\"%s\"\n", test);
 		free(test);
 	}

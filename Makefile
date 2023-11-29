@@ -51,10 +51,10 @@ CC = nasm
 
 UNAME_S = $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
- ASMFLAGS = -f elf64 -D LINUX
+ ASMFLAGS = -f elf64 -D LINUX -g -F dwarf
 endif
 ifeq ($(UNAME_S),Darwin)
- ASMFLAGS = -f macho64 -D MACOS
+ ASMFLAGS = -f macho64 -D MACOS -g
 endif
 
 TESTS = tester
@@ -72,7 +72,7 @@ $(NAME): $(OUT)
 
 $(TESTS): $(NAME) $(TEST_OUT)
 	@echo "$(_PURPLE)Linking $(TESTS)$(_COLOR_RESET)"
-	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm -Wall -Wextra -Werror -g -no-pie -fno-pie -z noexecstack
+	@gcc $(TEST_OUT) -o $(TESTS) -L. -lasm -Wall -Wextra -Werror -g -z noexecstack -pie
 	@echo "$(_GREEN)DONE$(_COLOR_RESET)"
 
 $(OUT): $(OUTS)/%.o : $(SRC_DIR)/%.s
@@ -83,7 +83,7 @@ $(OUT): $(OUTS)/%.o : $(SRC_DIR)/%.s
 $(TEST_OUT): $(OUTS)/%.o : $(SRC_DIR)/%.c
 	@echo "$(_CYAN)Compiling $(basename $(notdir $*.o)) $(_COLOR_RESET)"
 	@mkdir -p $(@D)
-	@gcc -Wall -Werror -Wextra -g -no-pie -fno-pie -c $< -o $@
+	@gcc -Wall -Werror -Wextra -g -c $< -o $@
 
 re: fclean
 	@make all
