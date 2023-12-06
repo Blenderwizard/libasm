@@ -3,6 +3,7 @@ section .text
 %ifdef MACOS
 global	_ft_strdup
 extern	_ft_strlen
+extern  _malloc
 %endif
 %ifdef LINUX
 global	ft_strdup
@@ -29,11 +30,12 @@ ft_strdup:
 	PUSH    RDI ; Save RDI for later
 	PUSH	0 ; Keep stack alligned
 	MOV 	RDI, RAX ; Set first parameter to return of ft_strlen
+	INC		RDI
 %ifdef MACOS
-	CALL	malloc wrt ..plt ; Allocate
+	CALL	_malloc wrt ..plt ; Allocate
 %endif
 %ifdef LINUX
-	CALL    malloc wrt ..plt	; Allocate
+	CALL    malloc wrt ..plt; Allocate
 %endif
 	POP		RDI ; Get rid of dummy
 	POP		RDI ; Retrieve parameter

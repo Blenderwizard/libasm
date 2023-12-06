@@ -30,7 +30,6 @@ ft_write:
 	LEAVE ; Tear down the stack frame
 	RET ; Return
 
-
 exit_error:
     NEG  	RAX ; get errno value (is negative need positive)
 	MOV		R15, RAX ; store RAX

@@ -17,7 +17,6 @@ ft_read:
 %endif
 	PUSH	RBP ; Establish a stack frame
 	MOV		RBP, RSP
-
 %ifdef MACOS
 	MOV		RAX, 0x2000003 ; Macos is weird
 %endif
